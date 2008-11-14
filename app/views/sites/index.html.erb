@@ -1,0 +1,27 @@
+<h1>Sites controller, index action</h1>
+ 
+<table>
+  <tr>
+    <th>LOCID</th>
+    <th>Name</th>
+    <th>Description</th> 
+    <th colspan="3">Actions</th>
+  </tr>
+ 
+<% @sites.each do |site| %>
+  <tr>
+    <td><%=h site.loc_id %></td>
+    <td><%=h site.name %></td>
+    <td><%=h site.description %></td>
+ 
+    <td><%= link_to 'Show', resource(site) %></td>
+    <td><%= link_to 'Edit', resource(site, :edit) %></td>
+    <td><%= delete_button(site, "Delete #{site.name}") %></td>
+  </tr>
+<% end %>
+</table>
+ 
+<%= link_to 'New', resource(:sites, :new) %>
+
+
+

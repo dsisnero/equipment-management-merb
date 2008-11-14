@@ -1,0 +1,23 @@
+<h1>Site controller, new action</h1>
+ 
+<%= form_for(@site, :action => resource(:sites) ) do %>
+ 
+  <p>
+    <%= text_field :loc_id, :label => "LocID" %>
+  </p>
+ 
+  <p>
+    <%= text_field :name, :label => "Name"  %>
+  </p>
+
+  <p>
+    <%= text_area :directions, :label => "Driving Directions" %>
+  </p>
+ 
+  <p>
+    <%= submit "Create" %>
+  </p>
+<% end =%>
+ 
+<%= link_to 'Back', resource(:sites) %>
+

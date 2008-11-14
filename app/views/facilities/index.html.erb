@@ -1,0 +1,21 @@
+<h1>Facilities</h1>
+
+<table>
+<tr>
+<th>LocID</th>
+<th>Factype</th>
+</tr>
+<% for facility in @facilities do %>
+<tr>
+<td><%=h facility.lid %></td>
+<td><%=h facility.factype %></td>
+<td><%= link_to 'Show', resource(facility) %></td>
+    <td><%#= link_to 'Edit', resource(facility, :edit) %></td>
+    <td><%#= delete_button(facility, "Delete") %></td>
+  </tr>
+<% end %>
+</table>
+ 
+<%#= link_to 'New', resource(:facilities, :new) %>
+</tr>
+

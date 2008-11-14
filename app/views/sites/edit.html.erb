@@ -1,0 +1,19 @@
+<h1>Site controller, edit action</h1>
+ 
+ 
+<%= form_for(@site, :action => resource(@site)) do %>
+ 
+  <p>
+    <%= text_field :name, :label => "Name"  %>
+  </p>
+ 
+  <p>
+    <%= text_field :loc_id, :label => "LocID"  %>
+  </p>
+ 
+  <p>
+    <%= submit "Update" %>
+  </p>
+<% end =%>
+ 
+<%= link_to 'Show', resource(@site) %> | <%= link_to 'Back', resource(:sites) %>
