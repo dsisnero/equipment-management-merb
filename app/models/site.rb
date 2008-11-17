@@ -3,7 +3,7 @@ class Site
   
   property :id, Serial
   property :name, String
-  property :loc_id, String
+  property :lid, String
   property :description,Text
   property :directions, Text
   property :latitude, String
