@@ -1,0 +1,8 @@
+%h2= @site.name
+
+%p= @site.description
+%p= @site.directions
+
+= link_to 'Edit', url(:edit_site, @site)
+|
+= link_to 'Back', url(:sites)

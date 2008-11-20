@@ -1,0 +1,17 @@
+%h2 Sites
+
+%table
+  %tr
+    %th LID
+    %th Name
+    %th Description
+    %th{:span => 2} Actions
+  - for site in @sites
+    %tr
+      %td= site.lid
+      %td= site.name
+      %td= site.description
+      %td= link_to 'Show', url(:site,site)
+      %td= link_to 'Edit', url(:edit_site,site)
+
+= link_to 'New', url(:new_site)
