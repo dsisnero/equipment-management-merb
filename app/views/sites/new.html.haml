@@ -5,15 +5,8 @@
 = form_for(@site,:action => url(:sites) ) do
   %fieldset
     %legend Create Site
-    %p= text_field :name, :label => 'Name'
-    %p= text_field :lid, :label => 'LID'
-    %p= text_area :description, :label => 'Description'
-    %p= text_area :directions, :label => 'Directions'
-    %p= text_field :latitude, :label => 'Latitude'
-    %p= text_field :longitude, :label =>'Longitude'
+    =partial 'form'
   
     %p= submit "Create"
 
-= link_to 'Show', url(:site,@site)
-|
 = link_to 'Sites', url(:sites)
