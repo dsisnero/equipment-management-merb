@@ -1,0 +1,16 @@
+%h1 Facilities
+
+%table
+  %tr
+    %th LocID
+    %th Factype
+    %th{:span => 3} Actions
+  - for facility in @facilities
+    %tr
+      %td= facility.lid
+      %td= facility.factype
+      %td= link_to 'Show', resource(facility)
+      %td= link_to 'Edit', resource(facility,:edit)
+
+
+= link_to 'New', resource(:facilities,:new)
