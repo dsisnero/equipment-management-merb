@@ -1,11 +1,11 @@
 = error_messages_for :site
 
-= form_for(@site, :action => url(:site, @site)) do
+= form_for(@site, :action => resource(@site)) do 
   %fieldset
     %legend Edit Site Info
     =partial 'form'
     %p= submit "Edit"
 
-= link_to 'Show', url(:site, @site)
+= link_to 'Show', resource(@site)
 |
-= link_to 'Back', url(:sites)
+= link_to 'Back', resource(:sites)

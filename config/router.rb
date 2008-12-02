@@ -27,6 +27,7 @@
 
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
+  resources :racks
   
   # match("/:facility") do
   
@@ -38,6 +39,8 @@ Merb::Router.prepare do
     end
 
   resources :circuits
+
+  resources :sites
 
   
   

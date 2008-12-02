@@ -1,4 +1,4 @@
-dependency "rack-cache", "0.2.0", :require_as => "rack/cache"
+#dependency "rack-cache", "0.2.0", :require_as => "rack/cache"
 #dependency "system_timer", "1.0"
 dependency "fti_circuits"
 dependency "compass"

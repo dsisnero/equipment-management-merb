@@ -1,8 +1,11 @@
 %h2= @site.name
 
+%p= @site.lid
 %p= @site.description
 %p= @site.directions
+%p= @site.latitude
+%p= @site.longitude
 
-= link_to 'Edit', url(:edit_site, @site)
+= link_to 'Edit', resource(@site,:edit)
 |
-= link_to 'Back', url(:sites)
+= link_to 'Back', resource(:sites)
