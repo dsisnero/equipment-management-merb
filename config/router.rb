@@ -27,15 +27,32 @@
 
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
+  resources :ports
+  resources :hardwares
+  
+ 
+
+  resources :facilities, :identify => :lid_fac do
+    resources :circuits
+  end
+ 
+  resources :sites do
+    resources :buildings
+    resources :rooms
+    resources :racks, :controller => 'faa/racks'
+    resources :rows
+    resources :patch_panels
+  end
+  
+
+  match('/signup', :method => :get).to(:controller => 'users', :action => 'new').name(:signup)
   
   # match("/:facility") do
   
   #     resources :circuits
   #   end
   
-    resources :facilities, :identify => :lid_fac do
-      resources :circuits
-    end
+  
 
   resources :circuits
 
