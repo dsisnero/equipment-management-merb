@@ -1,6 +1,15 @@
+dependency "rack-cache", "0.2.0", :require_as => "rack/cache"
+#dependency "system_timer", "1.0"
+dependency "fti_circuits"
+dependency "compass"
+dependency "haml"
+
+dependency "merb-pagination"
+
+
 # dependencies are generated using a strict version, don't forget to edit the dependency versions when upgrading.
-merb_gems_version = "1.0.0"
-dm_gems_version   = "0.9.6"
+merb_gems_version = "1.0.3"
+dm_gems_version   = "0.9.7"
 
 # For more information about each component, please read http://wiki.merbivore.com/faqs/merb_components
 dependency "merb-action-args", merb_gems_version
@@ -16,12 +25,19 @@ dependency "merb-param-protection", merb_gems_version
 dependency "merb-exceptions", merb_gems_version
 dependency "merb-builder"
 dependency "merb-parts"
- 
-dependency "dm-core", dm_gems_version         
+dependency "merb-haml"
+
+dependency "data_objects"#, dm_gems_version
+dependency "dm-core"#, dm_gems_version         
 dependency "dm-aggregates", dm_gems_version   
 dependency "dm-migrations", dm_gems_version   
 dependency "dm-timestamps", dm_gems_version   
 dependency "dm-types", dm_gems_version        
-dependency "dm-validations", dm_gems_version  
+dependency "dm-validations", dm_gems_version 
 
-dependency "fti_circuits"
+dependency "dm-paperclip"
+dependency "dm-is-paginated"
+dependency "dm-is-remixable"
+#dependency "dm-adjust"
+
+
