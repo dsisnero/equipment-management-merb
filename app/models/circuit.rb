@@ -13,29 +13,39 @@ class Circuit
   property :cutover_status,String
   property :created_at, DateTime
   property :updated_at, DateTime
+  property :service_area, String
+  property :region, String
+  property :actual_sa, DateTime
+  property :actual_cutover, DateTime
+  property :gnas, String
+  
+  before :create, :create_associated
   
   belongs_to :from_facility, :class_name => 'Facility', :child_key => [:from_lid,:from_fac]
   belongs_to :to_facility, :class_name => 'Facility', :child_key => [:to_lid,:to_fac]
 
-  def self.find_all_remote(facility)
-    lid,fac = facility.gsub(" ",'_').split("_")
-    #debugger
+  def self.find_all_remote(lid,fac)
     agent.get_circuits(lid,fac)
   end
   
   def self.remote_keys
-    %w(usi csa from_interface_type nas svc cutover_status)
+    keys = %w(usi csa from_interface_type nas svc cutover_status service_area region)
+    keys += %w(actual_sa actual_cutover gnas)
   end
   
-  def self.find_and_create_from_remote(facility)
-    remote_circuits = self.find_all_remote(facility)
+  def self.find_or_create_from_remote(lid,fac)
+    remote_circuits = self.find_all_remote(lid,fac)
     return [] if remote_circuits.empty? || nil
     unique_facilities = self.find_unique_facilities(remote_circuits)
+    unique_sites = unique_facilities.map{ |fac| fac[0]}.uniq
     unique_facilities.each do |fac|
-      Facility.first_or_create(:lid => fac[0], :factype => fac[1])
-    end      
+      ::Facility.first_or_create(:lid => fac[0], :factype => fac[1])
+    end
+    unique_sites.each do |site|
+      ::Site.first_or_create(:lid => site)
+    end
     remote_circuits.each do |remote|
-      find_or_update_from_remote(remote)
+      _find_or_create_from_remote(remote)
       #circuit.update_from_remote(remote)
     end
     
@@ -47,12 +57,20 @@ class Circuit
     facarrays = fac.map{ |lid_fac| split_lid_fac(lid_fac)}    
     facarrays
   end
-  
-  
-  def self.find_or_update_from_remote(remote)
+
+
+  def self._find_or_create_from_remote(remote)
     update_atts = update_remote_hash(remote)
-    circuit = self.first_or_create({:usi => remote["usi"]},update_atts)
-    
+    circuit = self.first_or_create({:usi => remote["usi"]},update_atts)    
+  end
+
+  def self.find_and_update_from_remote(remote)
+    update_atts
+    if circuit= self.first({ :usi => remote})
+    end
+    update_atts = update_remote_hash(remote)
+    circuit = self.first_or_create({:usi => remote["usi"]},update_atts)    
+    circuit.update_attributes update_atts    
   end
   
   def self.update_remote_hash(remote)
@@ -78,17 +96,7 @@ class Circuit
   
   def self.find_remote(uid)
     agent.get_circuit(uid)
-  end
-  
-  #  def self.agent
-  #     @agent ||= initialize_agent
-  #   end
-  
-  def fetch(id)
-    
-  end
-  
-  
+  end  
   
   def update_from_remote(remote)
     update_attributes(remote,*self.class.remote_keys)
@@ -101,7 +109,16 @@ class Circuit
     self.save
   end
   
+  private
   
+  def create_associated
+    Facility.first_or_create(:lid => from_lid,:factype => from_fac)
+    Site.first_or_create(:lid => :from_lid)
+    Facility.first_or_create(:lid => to_lid, :factype => to_fac)
+    Site.first_or_create(:lid => to_lid)
+  end
+
+
   def self.agent
     @agent ||= FtiCircuitSearch::Client.new
   end
