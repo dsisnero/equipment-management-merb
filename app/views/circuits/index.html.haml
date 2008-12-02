@@ -1,0 +1,39 @@
+%h3= "#{@facility.lid_fac} Circuits"
+
+
+%table
+  %tr
+    %th USI
+    %th CSA
+    %th From Lidfac
+    %th To Lidfac
+    %th Interface Type
+    %th NAS
+    %th SVC
+    %th GNAS
+    %th Region
+    %th Service Area
+    %th SA
+    %th Cutover
+    
+  - for circuit in @circuits
+    %tr
+      %td= link_to circuit.usi, resource(@facility,circuit)
+      %td= circuit.csa
+      %td= circuit.from_facility
+      %td= circuit.to_facility
+      %td= circuit.from_interface_type
+      %td= circuit.nas
+      %td= circuit.svc
+      %td= circuit.gnas
+      %td= circuit.region
+      %td= circuit.service_area
+      %td= circuit.actual_sa.strftime("%m/%d/%Y")
+      %td= circuit.actual_cutover.strftime("%m/%d/%Y")
+
+- throw_content(:sidebar) do
+  %ul
+    = link_to 'Facilities', resource(:facilities)
+  %ul
+    = link_to @facility.lid_fac, resource(@facility)
+      

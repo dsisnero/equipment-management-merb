@@ -1,0 +1,38 @@
+%h3= "Circuit: #{@circuit.usi}"
+
+%p 
+  %label CSA
+  = @circuit.csa
+%p
+  %label From FAC
+  = link_to @circuit.from_facility ,url(:facility,@circuit.from_facility)
+%p
+  %label To FAC
+  = link_to @circuit.to_facility, url(:facility,@circuit.to_facility)
+%p
+  %label NAS
+  = @circuit.nas
+%p
+  %label SVC
+  = @circuit.svc
+%p
+  %label From Interface Type
+  = @circuit.from_interface_type
+%p
+  %label NAS
+  = @circuit.nas
+%p
+  %label Region
+  = @circuit.region
+%p
+  %label Actual SA
+  = @circuit.actual_sa
+%p
+  %label Actual Cutover
+  = @circuit.actual_cutover
+%p
+  %label GNAS
+  = @circuit.gnas
+
+
+
