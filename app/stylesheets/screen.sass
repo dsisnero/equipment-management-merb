@@ -1,0 +1,42 @@
+@import blueprint/screen.sass
+@import compass/reset.sass
+@import compass/utilities.sass
+@import faaform.sass
+
+// +blueprint-form
++faa-form
++blueprint-interaction
+
+body.blueprint
+  +blueprint-typography
+  .container
+    +container
+  div.border
+    +border
+  div.colborder
+    +colborder
+  hr
+    +colruler
+  hr.space
+    +colspacer
+
+body
+  #header
+    +column(24)
+    h1
+      :float left
+    #site-actions
+      :float right
+      +horizontal-list
+  #main-content
+    +column(18)
+    +colborder
+  #navigation
+    +column(5,last)
+
+  #footer
+    +column(24)
+    #legalese
+      +column(20)
+    #footer-links
+      +column(4,last)

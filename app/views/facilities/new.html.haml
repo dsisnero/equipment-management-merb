@@ -1,0 +1,10 @@
+%h3 New Facility
+
+= error_messages_for :facility
+
+= form_for(@facility, :action => resource(:facilities)) do
+  = partial "form"
+
+  %p= submit "Create"
+
+= link_to 'Back', resource(:facilities)

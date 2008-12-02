@@ -1,0 +1,44 @@
+!!! Strict
+%html{html_attrs}
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html;charset=utf-8'}/
+ 
+    -# BluePrint CSS
+    != css_include_tag 'compiled/screen', 'compiled/application', :bundle => :screen, :media => 'screen,projection'
+    != css_include_tag 'compiled/print', 'compiled/application', :bundle => :print, :media => 'print'
+    /[if IE]
+      != css_include_tag 'compiled/ie', 'compiled/application_ie', :bundle => :ie, :media => 'screen,projection'
+ 
+    != catch_content :for_head
+    
+    %title= "#{@title} - merb-skeleton"
+
+  %body{:id => request.domain.tr('.', '-'), :class => "#{controller_name} #{action_name} blueprint"}
+    %div.container
+      #header
+        %h1  Equipment Listing
+        %ul{:id =>"site-actions"}
+          %li login
+          %li signup
+          %li test      
+    
+      #main-content
+        - [ :error, :success, :notice ].each do |type|
+          - if message[type]
+            %div{:class => type }= message[type]
+
+        != catch_content
+      #navigation      
+        != catch_content :sidebar
+  
+
+      #footer
+        %p 'this is the footer'
+      
+ 
+
+
+
+
+
+ 

@@ -1,8 +1,10 @@
+require 'time'
+
 class Facilities < Application
   provides :xml, :yaml, :js
 
   def index
-    @facilities = Facility.all
+    @page_count, @facilities = Facility.paginated(:page => params[:page], :per_page => 15)
     display @facilities
   end
 
@@ -19,10 +21,10 @@ class Facilities < Application
     display @facility
   end
 
-  def edit(id)
+  def edit(lid_fac)
     only_provides :html
-  #  lid,fac = lid_fac.split("_")
-    @facility = Facility.get(id)
+    lid,fac = lid_fac.split("_")
+    @facility = Facility.get(lid,fac)
     raise NotFound unless @facility
     display @facility
   end

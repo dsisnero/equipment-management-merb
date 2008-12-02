@@ -13,5 +13,8 @@
       %td= site.description
       %td= link_to 'Show', resource(site)
       %td= link_to 'Edit', resource(site,:edit)
-
+      %td= delete_button(site)
+      
+     
 = link_to 'New', resource(:sites,:new)
+

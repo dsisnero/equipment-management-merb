@@ -98,7 +98,7 @@ describe "resource(@site)", :given => "a site exists" do
     before(:each) do
       @site = Site.first
       @response = request(resource(@site), :method => "PUT", 
-        :params => { :article => {:id => @site.id} })
+        :params => { :site => {:id => @site.id} })
     end
   
     it "redirect to the article show action" do

@@ -1,16 +1,17 @@
 class Sites < Application
   # provides :xml, :yaml, :js
+  
+  
 
   def index
-    @sites = Site.all
-    #debugger
+    @page_count, @sites = Site.paginated(:page => params[:page],:per_page => 15,:order => [:lid.desc])
     display @sites
   end
 
   def show(id)
     @site = Site.get(id)
     raise NotFound unless @site
-    display @site
+    display @site, :layout => 'site'
   end
 
   def new

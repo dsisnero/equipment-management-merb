@@ -1,3 +1,4 @@
+<<<<<<< HEAD:app/views/sites/show.html.haml
 %h2= @site.name
 
 %p= @site.lid
@@ -5,7 +6,21 @@
 %p= @site.directions
 %p= @site.latitude
 %p= @site.longitude
+%p= @site.description
+%p= @site.directions
+%p= @site.gsa_address
+%p= @site.latitude
+%p= @site.longitude
+
+- for facility in @site.facilities
+ %p= link_to facility.lid_fac, resource(facility)
+
 
 = link_to 'Edit', resource(@site,:edit)
 |
 = link_to 'Back', resource(:sites)
+
+- throw_content :sidebar do
+ %h3 Navigation
+ = partial 'sidebar'
+

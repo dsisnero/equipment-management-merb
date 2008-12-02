@@ -1,0 +1,6 @@
+%h3= @building.name
+%p= @building.description
+
+= link_to 'Edit',  resource(@site,@building,:edit)
+|
+= link_to 'Back', resource(@site,:buildings)

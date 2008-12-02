@@ -27,35 +27,30 @@
 
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
-  resources :racks
-  
-  # match("/:facility") do
-  
-  #     resources :circuits
-  #   end
-  
-    resources :facilities, :identify => :lid_fac do
-      resources :circuits
-    end
+
+  resources :facilities, :identify => :lid_fac do
+    resources :circuits
+  end
 
   resources :circuits
+  
+  resources :sites do
+    resources :buildings
+    resources :rooms
+    #    resources :racks, :controller => 'faa/racks'
+    #   resources :rows
+    #  resources :patch_panels
+  end
+  
 
-  resources :sites
+  match('/signup', :method => :get).to(:controller => 'users', :action => 'new').name(:signup)
 
   
   
-  #resources :facilities
-  # resources :sites do
-  #  resources :circuits
-  # end
   
-  #  resources :facilities do
-  #  resources :circuits
-  # end
   
-  # resource :circuits
-  # RESTful routes
-  # resources :posts
+
+  
   
   # Adds the required routes for merb-auth using the password slice
   slice(:merb_auth_slice_password, :name_prefix => nil, :path_prefix => "")
@@ -74,5 +69,5 @@ Merb::Router.prepare do
   default_routes
   
   # Change this for your home page to be available at /
-  # match('/').to(:controller => 'whatever', :action =>'index')
+  match('/').to(:controller => 'facilities', :action =>'index')
 end

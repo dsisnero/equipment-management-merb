@@ -1,0 +1,18 @@
+= parent_layout "application" do
+  %h3= "#{@site.name || @site.lid}"
+  = catch_content :for_layout
+  - throw_content :sidebar do
+    %ul
+      = link_to "#{@site.name || @site.lid}", resource(@site)
+    %ul
+      = link_to "Sites", resource(:sites)
+    %ul
+      = link_to "Buildings", resource(@site,:buildings)
+    %ul
+      = link_to "Rooms", resource(@site,:rooms)
+
+
+
+
+
+
