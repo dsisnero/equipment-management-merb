@@ -11,6 +11,7 @@
       %td
         = link_to 'Show', resource(@site,building)
       %td
-        = link_to 'Edit', resource(@site,building,:edit) 
+        = link_to 'Edit', resource(@site,building,:edit)
+      %td= delete_button(resource(@site,building))
 
 = link_to 'New', resource(@site,:buildings,:new)

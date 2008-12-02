@@ -51,7 +51,7 @@ class Buildings < SiteBase
     @building = Building.get(id)
     raise NotFound unless @building
     if @building.destroy
-      redirect resource(:buildings)
+      redirect resource(@site,:buildings)
     else
       raise InternalServerError
     end
