@@ -1,0 +1,16 @@
+%h3 Buildings
+%table
+  %tr
+    %th Name
+    %th Description
+    %th{:span => 2} Actions
+  - for building in @buildings
+    %tr
+      %td= building.name
+      %td= building.description
+      %td
+        = link_to 'Show', resource(@site,building)
+      %td
+        = link_to 'Edit', resource(@site,building,:edit) 
+
+= link_to 'New', resource(@site,:buildings,:new)

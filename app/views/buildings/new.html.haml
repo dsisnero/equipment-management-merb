@@ -1,0 +1,10 @@
+%h3 New Building
+
+= error_messages_for :building
+
+= form_for(@building, :action => resource(@site,:buildings) ) do
+  %fieldset
+    = partial "form"
+  %p= submit "Create"
+
+= link_to 'Back', resource(@site,:buildings)
