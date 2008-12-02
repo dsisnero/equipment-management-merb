@@ -3,13 +3,15 @@ class Circuits < Application
   before :ensure_authenticated
   
   provides :xml, :json
-  
-  #cache :index,:show
 
-  def index
+  def index    
     if lid_fac = params[:lid_fac]
-      lid,fac = lid_fac.split('_')
+      lid,fac = lid_fac.split('_')      
       @facility = Facility.get(lid,fac)
+      @facility.update_circuits
+      if @facility.processing
+        message[:notice] = "Updating circuits from remote. Please refresh"
+      end
       @circuits = @facility.from_circuits + @facility.to_circuits
     else
       @circuits = Circuit.all
