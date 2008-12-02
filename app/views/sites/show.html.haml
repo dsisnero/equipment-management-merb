@@ -1,8 +1,19 @@
-%h2= @site.name
-
 %p= @site.description
 %p= @site.directions
+%p= @site.gsa_address
+%p= @site.latitude
+%p= @site.longitude
 
-= link_to 'Edit', url(:edit_site, @site)
+- for facility in @site.facilities
+ %p= link_to facility.lid_fac, resource(facility)
+
+
+= link_to 'Edit', resource(@site,:edit)
 |
-= link_to 'Back', url(:sites)
+= link_to 'Back', resource(:sites)
+
+- throw_content :sidebar do
+ %h3 Navigation
+ = partial 'sidebar'
+
+

@@ -11,7 +11,11 @@
       %td= site.lid
       %td= site.name
       %td= site.description
-      %td= link_to 'Show', url(:site,site)
-      %td= link_to 'Edit', url(:edit_site,site)
+      %td= link_to 'Show', resource(site)
+      %td= link_to 'Edit', resource(site,:edit)
+      %td= delete_button(site)
+     
+= link_to 'New', resource(:sites,:new)
 
-= link_to 'New', url(:new_site)
+
+
